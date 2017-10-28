@@ -18,12 +18,12 @@ module.exports = [
     },
     {
         method: 'GET',
-        path: '/{name}',
+        path: '/baba/{name}',
         handler: (request, reply) => {
             const db = request.server.app.db;
             console.log(db);
             console.log("Hello 1234dd");
-            db.books.find((err, docs) => {
+            db.docs.find((err, docs) => {
 
                 if (err) {
                     return reply(Boom.wrap(err, 'Internal MongoDB error'));
@@ -32,6 +32,21 @@ module.exports = [
                 reply(docs);
             });
             // reply('Hello blah, ' + encodeURIComponent(request.params.name) + '!' + db);
+        }
+    },
+    {
+        method: 'GET',
+        path: '/haba/{code}',
+        handler: (request, reply) => {
+            const db = request.server.app.db;
+            db.docs.find((err, docs) => {
+
+                if (err) {
+                    return reply(Boom.wrap(err, 'Internal MongoDB error'));
+                }
+
+                reply(docs);
+            });
         }
     }
 ]
