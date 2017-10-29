@@ -1,52 +1,43 @@
+const Boom = require('boom');
+const uuid = require('node-uuid');
+const repo = require('../repos')
+
 module.exports = [
     {
         method: 'GET',
         path: '/',
         handler: (request, reply) => {
             const db = request.server.app.db;
-            console.log(db);
-            console.log("blah blah");
-            db.books.find((err, docs) => {
-
-                if (err) {
-                    return reply(Boom.wrap(err, 'Internal MongoDB error'));
-                }
-
-                reply(docs);
-            });
+            repo.listAll(db, 'docs', (err, result) =>
+                err ?
+                    reply(Boom.wrap(err, 'Internal MongoDB error')) :
+                    reply(result))
         }
     },
     {
         method: 'GET',
-        path: '/baba/{name}',
+        path: '/baba',
         handler: (request, reply) => {
             const db = request.server.app.db;
-            console.log(db);
-            console.log("Hello 1234dd");
-            db.docs.find((err, docs) => {
-
-                if (err) {
-                    return reply(Boom.wrap(err, 'Internal MongoDB error'));
-                }
-
-                reply(docs);
-            });
-            // reply('Hello blah, ' + encodeURIComponent(request.params.name) + '!' + db);
+            repo.listAll(db, 'docs', (err, result) =>
+                err ?
+                    reply(Boom.wrap(err, 'Internal MongoDB error')) :
+                    reply(result));
         }
     },
     {
-        method: 'GET',
-        path: '/haba/{code}',
+        method: 'POST',
+        path: '/haba',
         handler: (request, reply) => {
             const db = request.server.app.db;
-            db.docs.find((err, docs) => {
+            // const doc = {}
+            doc = request.payload
+            doc._id = uuid.v1();
 
-                if (err) {
-                    return reply(Boom.wrap(err, 'Internal MongoDB error'));
-                }
-
-                reply(docs);
-            });
+            db.docs.save(doc, (err, result) =>
+                err ?
+                    reply(Boom.wrap(err, 'Internal MongoDB error')) :
+                    reply(result));
         }
     }
 ]
