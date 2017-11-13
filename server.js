@@ -15,14 +15,13 @@ server.connection({
 
 server.app.db = mongojs('bt-hapi-db', ['bug']);
 
-// Add the route
-server.route(routes);
-
 server.register(plugins, (err) => {
 
     if (err) {
         throw err; // something bad happened loading the plugin
     }
+
+    server.route(routes);
 
     server.start((err) => {
 

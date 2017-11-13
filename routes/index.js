@@ -16,4 +16,4 @@ module.exports = [
         path: '/haba',
         handler: handlers.modelCreateHandler('docs')
     }
-]
+].concat(require('./bugs'))
