@@ -14,6 +14,11 @@ module.exports = [
         handler: handlers.modelFindHandler(modelName)
     },
     {
+        method: 'DELETE',
+        path: '/' + modelName + '/{id}',
+        handler: handlers.modelDeleteHandler(modelName)
+    },
+    {
         method: 'POST',
         path: '/' + modelName,
         handler: handlers.modelCreateHandler(modelName)

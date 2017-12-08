@@ -35,5 +35,15 @@ module.exports = {
                 (err, result) =>
                     err ?
                         reply(Boom.wrap(err, 'Internal MongoDB error')) :
-                        reply(result ? result : Boom.notFound()))
+                        reply(result ? result : Boom.notFound())),
+    modelDeleteHandler:
+    model =>
+        (request, reply) =>
+            repo.delete(request.server.app.db,
+                model,
+                request.params.id,
+                (err, result) =>
+                    err ?
+                        reply(Boom.wrap(err, 'Internal MongoDB error')) :
+                        reply(result ? result : Boom.notFound())),
 }
