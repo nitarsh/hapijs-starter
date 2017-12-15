@@ -10,7 +10,14 @@ module.exports = [
     {
         method: 'GET',
         path: '/baba/{id}',
-        handler: handlers.modelFindHandler('docs')
+        handler: handlers.modelFindHandler('docs'),
+        config: {
+            validate: {
+                params: {
+                    id: Joi.string().min(36).max(36)
+                }
+            }
+        }
     },
     {
         method: 'POST',
@@ -18,10 +25,10 @@ module.exports = [
         handler: handlers.modelCreateHandler('docs'),
         config: {
             validate: {
-                params: {
+                payload: {
                     name: Joi.string().min(5).max(10)
                 }
             }
         }
     }
-].concat(require('./bugs'))
+].concat(require('./bugs')).concat(require('./users'))
