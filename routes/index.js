@@ -1,3 +1,4 @@
+const Joi = require('joi');
 const handlers = require('./genericHandlers')
 
 module.exports = [
@@ -14,6 +15,13 @@ module.exports = [
     {
         method: 'POST',
         path: '/haba',
-        handler: handlers.modelCreateHandler('docs')
+        handler: handlers.modelCreateHandler('docs'),
+        config: {
+            validate: {
+                params: {
+                    name: Joi.string().min(5).max(10)
+                }
+            }
+        }
     }
 ].concat(require('./bugs'))
