@@ -1,0 +1,141 @@
+{
+	"info": {
+		"name": "BugTracker",
+		"_postman_id": "5dd7e79b-02be-743b-3ba6-baf3df4f0798",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "bugs",
+			"description": "",
+			"item": [
+				{
+					"name": "localhost:8000/bugs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8000/bugs",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"bugs"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8000/bugs/58a40600-c89b-11e7-bc2b-6f0700084469",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8000/bugs/58a40600-c89b-11e7-bc2b-6f0700084469",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"bugs",
+								"58a40600-c89b-11e7-bc2b-6f0700084469"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8000/bugs/58a40600-c89b-11e7-bc2b-6f0700084469",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8000/bugs/58a40600-c89b-11e7-bc2b-6f0700084469",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"bugs",
+								"58a40600-c89b-11e7-bc2b-6f0700084469"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8000/bugs",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"xyz1\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8000/bugs",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"bugs"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "comments",
+			"description": "",
+			"item": []
+		},
+		{
+			"name": "users",
+			"description": "",
+			"item": []
+		},
+		{
+			"name": "teams",
+			"description": "",
+			"item": []
+		},
+		{
+			"name": "localhost:8000/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:8000/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
