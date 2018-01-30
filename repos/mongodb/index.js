@@ -2,8 +2,12 @@ const timestampedObject = obj => {
     t = Date.now()
     obj.created = t
     obj.updated = t
-    return t
+    return obj
 }
+
+const updatedTimestamp = obj => Object.defineProperty(obj,'updated',{value:Date.now()})
+
+//TODO: create logs for all create, delete, update operations
 
 module.exports = {
     withId: (db, model, _id, cb) => db[model].findOne({
@@ -21,7 +25,7 @@ module.exports = {
             _id: obj._id
         },
         update: {
-            $set: attr
+            $set: updatedTimestamp(attr)
         }
     }, cb)
 }
