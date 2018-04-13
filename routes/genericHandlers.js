@@ -4,17 +4,20 @@ const repo = require('../repos')
 
 const generateIdForObj = o => Object.assign(o, { _id: uuidv1() })
 
+const httpReplyCallback = (reply, code=200) => {
+    return (err, result) =>
+    err ?
+        reply(Boom.wrap(err, 'Internal MongoDB error')) :
+        reply(result).code(code)
+}
 
-module.exports = {
+const genericHandlers = {
     modelListHandler:
     model =>
         (request, reply) =>
             repo.listAll(request.server.app.db,
                 model,
-                (err, result) =>
-                    err ?
-                        reply(Boom.wrap(err, 'Internal MongoDB error')) :
-                        reply(result)),
+                httpReplyCallback(reply)),
     modelCreateHandler:
     model =>
         (request, reply) =>
@@ -22,28 +25,21 @@ module.exports = {
                 request.server.app.db,
                 model,
                 generateIdForObj(request.payload),
-                (err, result) =>
-                    err ?
-                        reply(Boom.wrap(err, 'Internal MongoDB error')) :
-                        reply(result)),
+                httpReplyCallback(reply,201)),
     modelFindHandler:
     model =>
         (request, reply) =>
             repo.withId(request.server.app.db,
                 model,
                 request.params.id,
-                (err, result) =>
-                    err ?
-                        reply(Boom.wrap(err, 'Internal MongoDB error')) :
-                        reply(result ? result : Boom.notFound())),
+                httpReplyCallback(reply)),
     modelDeleteHandler:
     model =>
         (request, reply) =>
             repo.delete(request.server.app.db,
                 model,
                 request.params.id,
-                (err, result) =>
-                    err ?
-                        reply(Boom.wrap(err, 'Internal MongoDB error')) :
-                        reply(result ? result : Boom.notFound())),
+                httpReplyCallback(reply)),
 }
+
+module.exports = genericHandlers

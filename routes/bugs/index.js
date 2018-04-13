@@ -21,7 +21,8 @@ module.exports = [{
     handler: handlers.modelCreateHandler(modelName),
     config: {
         validate: {
-            payload: bugsSchema.createBugsAPI
+            payload: bugsSchema.createBugsAPI,
+            options:{presence:'required'}
         }
     }
 }]

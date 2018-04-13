@@ -1,20 +1,10 @@
-const timestampedObject = obj => {
-    t = Date.now()
-    obj.created = t
-    obj.updated = t
-    return obj
-}
-
-const updatedTimestamp = obj => Object.defineProperty(obj,'updated',{value:Date.now()})
-
-//TODO: create logs for all create, delete, update operations
-
-module.exports = {
+const commons = require('../commonFields');
+const fns = {
     withId: (db, model, _id, cb) => db[model].findOne({
         _id
     }, cb),
     listAll: (db, model, cb) => db[model].find(cb),
-    create: (db, model, obj, cb) => db[model].save(timestampedObject(obj), cb),
+    create: (db, model, obj, cb) => db[model].save(commons.timestampObject(obj, Date.now()), cb),
     delete: (db, model, _id, cb) => db[model].remove({
         _id
     }, {
@@ -25,7 +15,11 @@ module.exports = {
             _id: obj._id
         },
         update: {
-            $set: updatedTimestamp(attr)
+            $set: commons.updateTimestamp(attr, Date.now())
         }
     }, cb)
 }
+
+//TODO: create logs for all create, delete, update operations
+
+module.exports = fns
