@@ -1,10 +1,11 @@
 const commons = require('../commonFields');
+
 const fns = {
     withId: (db, model, _id, cb) => db[model].findOne({
         _id
     }, cb),
     listAll: (db, model, cb) => db[model].find(cb),
-    create: (db, model, obj, cb) => db[model].save(commons.timestampObject(obj, Date.now()), cb),
+    create: (db, model, obj, cb) => db[model].save(commons.timestampObject(commons.generateIdForObj(obj), Date.now()), cb),
     delete: (db, model, _id, cb) => db[model].remove({
         _id
     }, {

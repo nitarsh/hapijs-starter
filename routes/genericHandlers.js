@@ -1,8 +1,5 @@
 const Boom = require('boom');
-const uuidv1 = require('uuid/v1');
 const repo = require('../repos')
-
-const generateIdForObj = o => Object.assign(o, { _id: uuidv1() })
 
 const httpReplyCallback = (reply, code=200) => {
     return (err, result) =>
@@ -24,7 +21,7 @@ const genericHandlers = {
             repo.create(
                 request.server.app.db,
                 model,
-                generateIdForObj(request.payload),
+                request.payload,
                 httpReplyCallback(reply,201)),
     modelFindHandler:
     model =>

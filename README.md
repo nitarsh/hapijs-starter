@@ -1,1 +1,10 @@
-# Bug Tracker - backend using HapiJs
+# Bug Tracker - HapiJs REST server
+
+## Routing
+
+## Validation
+
+## DB
+
+
+# Tests
