@@ -6,8 +6,9 @@ const {generateIdForObj} = require('../repos/commonFields')
 const db = mongojs('bt-hapi-test-db', ['test-db']);
 
 const removeAll = () => {
-	db['testModel'].remove({},{justOne:false}, (err, result) => {});
-	db['testModel2'].remove({},{justOne:false}, (err, result) => {});
+	const modelsToRemove = ['testModel','testModel2'];
+	for(m of modelsToRemove)
+		db[m].remove({},{justOne:false}, (err, result) => {});
 }
 
 test.before(t => {
@@ -43,7 +44,6 @@ test.cb('repo test | listAll model | listed successfully', t => {
 					t.end();
 				})
 		})
-	
 });
 
 //test findone

@@ -33,4 +33,15 @@ server.register(plugins, (err) => {
     });
 });
 
+// listen on SIGINT signal and gracefully stop the server
+process.on('SIGINT', function () {  
+    console.log('stopping hapi server')
+  
+    server.stop({ timeout: 10000 }).then(function (err) {
+      console.log('hapi server stopped')
+      process.exit((err) ? 1 : 0)
+    })
+  })
+
 module.exports = server
+

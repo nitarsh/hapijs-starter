@@ -1,5 +1,5 @@
 {
-  "name": "bt-hapi",
+  "name": "hapijs-starter",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "ssh://nitarshs@vs-ssh.visualstudio.com:22/_ssh/bt-hapi"
+    "url": "ssh://git@github.com:nitarsh/hapijs-starter.git"
   },
   "author": "",
   "license": "ISC",
@@ -20,13 +20,17 @@
     "good-squeeze": "^5.0.2",
     "hapi": "^16.6.2",
     "hapi-auth-cookie": "^7.0.0",
+    "migrate": "^1.5.0",
     "mongojs": "^2.4.1",
+    "pg": "^7.4.1",
     "uuid": "^3.1.0"
   },
   "devDependencies": {
     "ava": "^1.0.0-beta.3"
   },
-  "ava":{
-    "files":["tests/*"]
+  "ava": {
+    "files": [
+      "tests/*"
+    ]
   }
 }
