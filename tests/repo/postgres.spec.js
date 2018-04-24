@@ -1,12 +1,7 @@
 const {Client} = require('pg');
 import test from 'ava';
-const client = new Client({
-    user: 'test_user',
-    host: 'localhost',
-    database: 'test_db',
-    password: 'testpass123',
-    port: 5432,
-  });
+
+const client = new Client({user: 'test_user', host: 'localhost', database: 'test_db', password: 'testpass123', port: 5432});
 
 test('postgres db test', async t => {
     await client.connect()

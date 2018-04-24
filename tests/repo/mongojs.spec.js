@@ -1,13 +1,12 @@
 import test from 'ava';
 const mongojs = require('mongojs');
-import repo from '../repos';
-const {generateIdForObj} = require('../repos/commonFields')
+import repo from '../../repos';
 
 const db = mongojs('bt-hapi-test-db', ['test-db']);
 
 const removeAll = () => {
 	const modelsToRemove = ['testModel','testModel2'];
-	for(m of modelsToRemove)
+	for(let m of modelsToRemove)
 		db[m].remove({},{justOne:false}, (err, result) => {});
 }
 
